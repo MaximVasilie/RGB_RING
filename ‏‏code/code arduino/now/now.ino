@@ -10,6 +10,8 @@
 #define MAX_NUM_COLOR 255 
 #define BAUDRATE 960
 #define READY "Ready"
+#define NOT_PROGRES false
+#define PROGRES true
 
 CRGB leds[NUM_LEDS];       
 char lastCommand = '0';   
@@ -79,7 +81,7 @@ void handleRGBCommand(String command)
 void handleEffectCommand(String command) 
 {
   lastCommand = command.charAt(0); // Store the command
-  commandInProgress = true;       // Set the active flag
+  commandInProgress = PROGRES;       // Set the active flag
   currentEffect = lastCommand - '0'; // Convert command to effect ID
 }
 
@@ -97,7 +99,7 @@ void runEffect()
     case 3: colorWipe(); break;
     case 4: randomSparkle(); break;
     case 5: colorChase(); break;
-    default: commandInProgress = false; break;
+    default: commandInProgress = NOT_PROGRES; break;
   }
 }
 
