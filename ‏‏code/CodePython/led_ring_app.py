@@ -63,6 +63,9 @@ class LedRingApp:
     def animate(self):
         """
         This function make led ring animation
+        :param: None
+        :return: None
+        time: O(num_leds_On)
         """
         if not self.running:
             #If flage stop
@@ -74,7 +77,12 @@ class LedRingApp:
         self.master.after(RESET_TIME, self.reset_leds)                      #reset led
 
     def reset_leds(self):
-        """This funcrtion reset led to the default color"""
+        """
+        This funcrtion reset led to the default color
+        :param: None
+        :return: None
+        :time: O(num_leds_on)
+        """
         for i in range(self.num_leds_on):
             led_index = (self.current_led + i) % len(self.leds)
             self.canvas.itemconfig(self.leds[led_index], fill=COLOR_TRUN_OFF) #set color to COLOR_TRUE_OFF
@@ -82,21 +90,38 @@ class LedRingApp:
         self.master.after(100, self.animate)
 
     def random_color(self):
-        """Generate a randome color in HEX format"""
+        """
+        This function generate a randome color in HEX format
+        :param: None
+        :return: random color in HEX format
+        :rtype: HEX
+        """
         return f'#{random.randint(MIN_NUM_COLOR_OX, MAX_NUM_COLOR_OX):06x}'
 
     def check_connection(self):
-        """Check ardouni conect"""
+        """C
+        This function check ardouni conect
+        :param: None
+        :return: none
+        """
 
         threading.Thread(target=self.connect_arduino).start()
 
     def connect_arduino(self):
-        """connect tp arduino"""
+        """
+        This functiom connect tp arduino
+        param: None
+        :return: None
+        """
         self.serial_manager.connect()
         self.master.after(0, self.show_main_app)
 
     def show_main_app(self):
-        """Display the main application"""
+        """
+        This function display the main application
+        :param: none
+        :return: None
+        """
         self.master.destroy()
         main_root = tk.Tk()
         main_root.iconbitmap(FOTO_PATH) #Foto app
