@@ -12,6 +12,8 @@ TEXT_COLOR = "white"
 BUTTON_PADDING = 10
 BUTTON_SPACING = 20
 ARROW_BUTTON_SPACING = 20
+GET_PULSE_SPEED = "Enter pulse speed(seconds): "
+GET_PULSE_INTERVAL = "Enter interval between pulse (milliseconds): "
 
 # Constants for pages
 PAGE_1 = 0
@@ -47,6 +49,9 @@ BUTTON_TEXT_RANDOM_SPARKLE = "✨ Random Sparkle"
 BUTTON_TEXT_COLOR_CHASE = "🏃 Color Chase"
 BUTTON_TEXT_CHOOSE_COLOR = "🎨 Choose Color"
 BUTTON_TEXT_STOP = "⛔ Stop"
+
+BUTTON_RIGHT = ">"
+BUTTON_LEFT = "<"
 
 class LEDController:
     def __init__(self, master, serial_manager):
@@ -107,8 +112,8 @@ class LEDController:
         :return: None
         Time: O(1)
         """
-        self.prev_button = self.create_arrow_button(arrow_frame, "<", self.previous_page, column=0)
-        self.next_button = self.create_arrow_button(arrow_frame, ">", self.next_page, column=1)
+        self.prev_button = self.create_arrow_button(arrow_frame, BUTTON_LEFT, self.previous_page, column=0)
+        self.next_button = self.create_arrow_button(arrow_frame, BUTTON_RIGHT, self.next_page, column=1)
 
     def create_arrow_button(self, parent_frame, text, command, column):
         """
@@ -240,18 +245,19 @@ class LEDController:
         Time: O(1)
         """
         if self.page_number > PAGE_1:
-            self.page_number -= 1
+            self.page_number -= JAMP_PAGE
             self.show_page(self.page_number)
 
     def next_page(self):
         """
         This function navigates to the next page, if possible.
+        :param: None
         :Param: None
         :return: None
         Time: O(1)
         """
         if self.page_number < PAGE_2:
-            self.page_number += 1
+            self.page_number += JAMP_PAGE
             self.show_page(self.page_number)
 
     def send_command(self, command):
@@ -281,7 +287,7 @@ class LEDController:
             self.send_pulse_command(command)
     def send_pulse_command(self, command):
         """
-        Sends the pulse command to the serial manager repeatedly.
+        Thsi function sends the pulse command to the serial manager repeatedly.
         :param command: The pulse command to send.
         :type command: str
         :return: None
@@ -335,7 +341,7 @@ class LEDController:
         :rtype: int or None
         Time: O(1)
         """
-        return simpledialog.askinteger(DIALOG_TITLE_PULSE_SPEED, "Enter pulse speed (seconds):", minvalue=PULSE_MIN_SPEED, initialvalue=PULSE_DEFAULT_SPEED)
+        return simpledialog.askinteger(DIALOG_TITLE_PULSE_SPEED, GET_PULSE_SPEED, minvalue=PULSE_MIN_SPEED, initialvalue=PULSE_DEFAULT_SPEED)
 
     def ask_for_pulse_interval(self):
         """
@@ -344,7 +350,7 @@ class LEDController:
         :rtype: int or None
         Time: O(1)
         """
-        return simpledialog.askinteger(DIALOG_TITLE_PULSE_INTERVAL, "Enter interval between pulses (milliseconds):", minvalue=PULSE_MIN_INTERVAL, initialvalue=PULSE_DEFAULT_INTERVAL)
+        return simpledialog.askinteger(DIALOG_TITLE_PULSE_INTERVAL, GET_PULSE_INTERVAL, minvalue=PULSE_MIN_INTERVAL, initialvalue=PULSE_DEFAULT_INTERVAL)
 
     def hex_to_rgb(self, hex_color):
         """
