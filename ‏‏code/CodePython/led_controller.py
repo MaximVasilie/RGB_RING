@@ -16,6 +16,7 @@ ARROW_BUTTON_SPACING = 20
 # Constants for pages
 PAGE_1 = 0
 PAGE_2 = 1
+JAMP_PAGE = 1
 
 # Constants for commands
 COMMAND_RAINBOW = '1'
@@ -77,7 +78,8 @@ class LEDController:
 
     def create_title_label(self):
         """
-        Creates the title label for the main window.
+        This function creates the title label for the main window.
+        :param: None
         :return: A Label widget with the title text.
         :rtype: tk.Label
         Time: O(1)
@@ -86,7 +88,8 @@ class LEDController:
 
     def create_arrow_frame(self):
         """
-        Creates a frame for navigation buttons (previous and next).
+        This function creates a frame for navigation buttons (previous and next).
+        :param: None
         :return: The frame containing the arrow buttons.
         :rtype: tk.Frame
         Time: O(1)
@@ -98,7 +101,7 @@ class LEDController:
 
     def create_arrow_buttons(self, arrow_frame):
         """
-        Creates the previous and next arrow buttons inside the provided frame.
+        This function creates the previous and next arrow buttons inside the provided frame.
         :param arrow_frame: The frame where the buttons will be placed.
         :type arrow_frame: tk.Frame
         :return: None
@@ -109,7 +112,7 @@ class LEDController:
 
     def create_arrow_button(self, parent_frame, text, command, column):
         """
-        Creates a button with arrow text and attaches a command to navigate pages.
+        This function creates a button with arrow text and attaches a command to navigate pages.
         :param parent_frame: The frame to place the button in.
         :type parent_frame: tk.Frame
         :param text: The text to display on the button (arrow).
@@ -130,7 +133,8 @@ class LEDController:
         return button
     def create_buttons_frame(self):
         """
-        Creates the frame where all action buttons are placed.
+        This function creates the frame where all action buttons are placed.
+        :param: None
         :return: The frame for action buttons.
         :rtype: tk.Frame
         Time: O(1)
@@ -141,7 +145,8 @@ class LEDController:
 
     def create_buttons(self):
         """
-        Creates buttons for both pages (page 1 and page 2).
+        This function creates buttons for both pages (page 1 and page 2).
+        :param: None
         :return: None
         Time: O(1)
         """
@@ -151,7 +156,8 @@ class LEDController:
 
     def create_page_1_buttons(self):
         """
-        Creates buttons for the first page of the LED controller.
+        This function creates buttons for the first page of the LED controller.
+        :param: None
         :return: List of buttons with their text and command.
         :rtype: list of tuples (str, callable)
         Time: O(1)
@@ -165,7 +171,8 @@ class LEDController:
 
     def create_page_2_buttons(self):
         """
-        Creates buttons for the second page of the LED controller.
+        This function creates buttons for the second page of the LED controller.
+        :Param: None
         :return: List of buttons with their text and command.
         :rtype: list of tuples (str, callable)
         Time: O(1)
@@ -178,7 +185,7 @@ class LEDController:
 
     def show_page(self, page_number):
         """
-        Displays the buttons corresponding to the current page number.
+        this function displays the buttons corresponding to the current page number.
         :param page_number: The page number to display (either PAGE_1 or PAGE_2).
         :type page_number: int
         :return: None
@@ -189,7 +196,8 @@ class LEDController:
 
     def clear_existing_buttons(self):
         """
-        Clears all existing buttons from the current page.
+        This function clears all existing buttons from the current page.
+        :param; None
         :return: None
         Time: O(m), where m is the number of buttons on the page.
         """
@@ -198,7 +206,7 @@ class LEDController:
 
     def display_buttons_for_page(self, page_number):
         """
-        Displays the buttons for the selected page.
+        This function displays the buttons for the selected page.
         :param page_number: The page number to display (either PAGE_1 or PAGE_2).
         :type page_number: int
         :return: None
@@ -210,7 +218,7 @@ class LEDController:
 
     def create_button(self, text, command):
         """
-        Creates a button with the given text and command, and adds it to the UI.
+        this function creates a button with the given text and command, and adds it to the UI.
         :param text: The text to display on the button.
         :type text: str
         :param command: The command to execute when the button is clicked.
@@ -226,7 +234,8 @@ class LEDController:
 
     def previous_page(self):
         """
-        Navigates to the previous page, if possible.
+        This function navigates to the previous page, if possible.
+        :param: None
         :return: None
         Time: O(1)
         """
@@ -236,7 +245,8 @@ class LEDController:
 
     def next_page(self):
         """
-        Navigates to the next page, if possible.
+        This function navigates to the next page, if possible.
+        :Param: None
         :return: None
         Time: O(1)
         """
